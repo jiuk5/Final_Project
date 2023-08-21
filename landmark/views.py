@@ -9,7 +9,7 @@ def index(request):
 
 
 def modelloadtest(request):
-    landmark = joblib.load()
+    landmark = joblib.load('')
 
 def upload(request):
     return render(request, 'landmark/upload.html')
