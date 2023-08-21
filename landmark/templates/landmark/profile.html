@@ -1,0 +1,13 @@
+{% for file in profile %}
+    <h1> {{file.title}} </h1> 
+    <img src="{{ file.image.url }}">
+    <br><br>
+
+{% endfor %}
+
+    <!-- 1번 -->
+    <img src="{{ file.image }}" >
+    <!-- 2번 -->
+    <img src="{{ file.image.url }}" >
+    #<!-- 3번 -->
+    #<img src="{{ file.image.path }}" >
