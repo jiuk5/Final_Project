@@ -1,0 +1,20 @@
+{% extends 'landmark/base.html' %}
+{% block title %}Hotel{% endblock title %}
+{% block headline %}호텔 목록{% endblock headline %}
+{% block content %}
+{% if hotel_list %}
+
+<table class="table">
+    <tbody>
+        <tr>
+        {% for hotel in hotel_list %}
+            <td>{{ hotel }}</td>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+{% else %}
+    목록이 존재하지 않습니다.
+{% endif %}
+
+{% endblock  %}
