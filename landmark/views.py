@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
-from django. http import HttpResponse, HttpResponseRedirect
+from django. http.response import HttpResponse, HttpResponseRedirect
 from . models import Profile
 import joblib
+import torch
+
+#model = torch.hub.load('ultralytics/yolov5', 'custom', path='./best.pt')
 
 def index(request):
     print('hi')
@@ -9,7 +12,13 @@ def index(request):
 
 
 def modelloadtest(request):
-    landmark = joblib.load('')
+    landmark = joblib.load('Deoksugung_price.pkl')
+    pre = landmark.predict([[2000000]])[0]
+    
+    cluster = ['높음', '중간', '낮음']
+    a =  cluster[pre]
+    #return HttpResponse(a)
+    return render(request, 'landmark/test1.html', {'a':a})
 
 def upload(request):
     return render(request, 'landmark/upload.html')
