@@ -12,9 +12,10 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 
 
+
 file_path = './machine_model'
 machine_list = os.listdir(file_path)
-model1 = torch.hub.load('ultralytics/yolov5', 'custom', path='./best.pt')  
+#model1 = torch.hub.load('ultralytics/yolov5', 'custom', path='./best.pt')  
 df_info = pd.read_csv('./final_info.csv', encoding='utf-8')
 df_hotel = pd.read_csv('./hotel.csv', encoding='euc-kr')
 landmark_name = []
@@ -34,7 +35,9 @@ def signup(request):
                 username=request.POST["username"],password=request.POST["password1"])
             auth.login(request,user)
             return redirect('home')
-        return render(request, 'signup.html')
+        return render(request, 'landmark/signup.html')
+    
+    return render(request, 'landmark/signup.html')
     
 def login(request):
     if request.method == "POST":
@@ -47,7 +50,7 @@ def login(request):
         else:
             return render(request, 'login.html', {'error': 'username or password is incorrect'})
     else:
-        return render(request, 'login.html')
+        return render(request, 'landmark/login.html')
     
 def logout(request):
     auth.logout(request)
@@ -71,7 +74,7 @@ def upload(request):
 
 
 
-def file_list(request):
+#def file_list(request):
     list = Profile.objects.all().order_by('-pk')
     results = model1(f'./media/{list[0].imgfile}')
     dict = results.pandas().xyxy[0].to_dict(orient="records")  
@@ -149,3 +152,4 @@ def delete_file(request, id):
     file.delete()   # DB에서 삭제 (데이터베이스에 들어있는 값을 삭제)
     
     return redirect(reverse('landmark:list'))
+

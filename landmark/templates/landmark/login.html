@@ -1,11 +1,16 @@
-{% extends 'base.html' %}
-
-{% block content %}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
 <div class="container">
     <h1>login</h1>
 
-    <form method="POST" action="{% url 'login' %}">
+    <form method="POST" action="{% url 'landmark:login' %}">
         {%csrf_token%}
         Username:
         <br>
@@ -18,4 +23,6 @@
         <input type="submit" class="btn btn-primary" value="sign up">
     </form>
 </div>
-{% endblock %}
+
+</body>
+</html>
