@@ -1,8 +1,11 @@
+{% extends 'landmark/base.html' %}
+{% block title %}기본 페이지{% endblock title %}
+{% block headline %}기본 페이지{% endblock headline %}
+{% block content %}
+<form method='post' enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>업로드</button>
+</form>
 
-    {% comment %} {% csrf_token %} {% endcomment %}
-    제목 <br>
-    <input type="text" name="title"> <br>
-    내용 <br>
-    <input type="file" name="image"><br>
-    <input type="submit" value="Submit" />
-{% comment %} </form> {% endcomment %}
+</body>

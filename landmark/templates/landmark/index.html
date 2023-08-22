@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{%block title%}Title{%endblock%}</title>
-</head>
+{% extends 'landmark/base.html' %}
+{% block title %}기본 페이지{% endblock title %}
+{% block headline %}기본 페이지{% endblock headline %}
+{% block content %}
 <body>
-    <h1>{%block headline %}제목 없음{%endblock%}</h1>
-    <div>
-        {%block content %} 내용 없음{%endblock%}
-    </div>
+    <h1>랜드마크 이미지 업로드</h1>
+    <hr>
+    <ul>
+        <li><a href="{% url 'landmark:upload' %}">파일 올리기</a></li>
+        <li><a href="{% url 'landmark:list' %}">파일 목록</a></li>
+    </ul>
 </body>
-</html>
