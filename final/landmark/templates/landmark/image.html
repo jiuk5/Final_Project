@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="ko">
+<h1>랜드마크 사진 올리기</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="myfile">
+    <button type="submit">Upload</button>
+</form>
