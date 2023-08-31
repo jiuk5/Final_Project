@@ -1,0 +1,27 @@
+{% extends 'landmark/base.html' %}
+{% block title %}history{% endblock title %}
+{% block headline %}History{% endblock headline %}
+{% block content %}
+<table class="table">
+    <tbody class="table-group-divider"> 
+    {% for file in profiles %}        
+        <tr>
+            <th>{{forloop.counter}}</th>
+            <td class="text-center">
+                <a href="{% url 'landmark:info' file.id %}">
+                    <img src="{{ file.imgfile.url }}" width="100px" height="100px">
+                </a>
+            </td>
+            <td class="text-center">
+                <a onclick="return confirm('정말 삭제하시겠습니까?');" href="{% url 'landmark:delete' file.id %}"><button>삭제</button></a></td>
+                {% comment %} <a href="{% url 'landmark:delete' file.id %}"><button>삭제</button></a></td> {% endcomment %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+<br><br><br>
+<div class="d-grid gap-2 col-4 mx-auto">
+<button type="button" class="btn btn-info"><a href="{% url 'landmark:index' %}">처음으로</a></button>
+</div>
+<br><br><br>
+{%endblock%}

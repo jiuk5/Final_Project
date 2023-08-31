@@ -2,10 +2,12 @@
 {% block title %}기본 페이지{% endblock title %}
 {% block headline %}기본 페이지{% endblock headline %}
 {% block content %}
-<form method='post' enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type='submit'>업로드</button>
-</form>
-
+<body>
+    <form method='post' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit' class = "btn btn-primary">Upload</button>
+    </form>
+    <a href="{% url 'landmark:index' %}">처음으로</a>
 </body>
+{% endblock %}

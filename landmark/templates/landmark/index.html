@@ -1,13 +1,16 @@
 {% extends 'landmark/base.html' %}
-{% block title %}기본 페이지{% endblock title %}
-{% block headline %}기본 페이지{% endblock headline %}
+{% block title %}Index{% endblock title %}
+{% block headline %}HOME{% endblock headline %}
 {% block content %}
 <body>
-    <h1>랜드마크 이미지 업로드</h1>
-    <hr>
+    <span style= "font-weight:bold;
+                font-size:2em;
+                line-height: 1.0em;">
+    어떤 랜드마크가 궁금하신가요?
+</span>
     <ul>
-        <li><a href="{% url 'landmark:upload' %}">파일 올리기</a></li>
-        <li><a href="{% url 'landmark:list' %}">파일 목록</a></li>
+        <h3><li><a href="{% url 'landmark:upload' %}">파일 올리기</a></li></h3>
+        <h3><li><a href="{% url 'landmark:list' id=user.id %}">파일 목록</a></li></h3>
     </ul>
 </body>
-{% endblock %}
+{% endblock  %}

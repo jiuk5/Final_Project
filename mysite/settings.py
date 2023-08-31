@@ -51,6 +51,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+LOGIN_URL = 'landmark:login'
+
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [

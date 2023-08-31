@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends 'landmark/base.html' %}
+{% block title %}로그인 페이지{% endblock title %}
+{% block headline %}Login{% endblock headline %}
+{% block content %}
 <body>
     
 <div class="container">
-    <h1>login</h1>
 
     <form method="POST" action="{% url 'landmark:login' %}">
         {%csrf_token%}
-        Username:
+        ID:
         <br>
         <input name="username"type="text">
         <br>
@@ -20,9 +16,19 @@
         <br>
         <input name="password" type="password">
         <br><br>
-        <input type="submit" class="btn btn-primary" value="sign up">
+        <input type="submit" class="btn btn-primary" value="login">
     </form>
 </div>
+<div id="login-error" class="error-message" style="display: block;">
+    {{error}}
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var errorDiv = document.getElementById("login-error");
+        if (errorDiv.innerHTML.trim() !=="") {
 
+        }
+    });
+</script>
 </body>
-</html>
+{% endblock %}

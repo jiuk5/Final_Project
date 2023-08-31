@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up</title>
-</head>
+{% extends 'landmark/base.html' %}
+{% block title %}회원가입 페이지{% endblock title %}
+{% block headline %}Sign Up{% endblock headline %}
+{% block content %}
 <body>
     <div class="container">
-        <h1>회원가입</h1>
     
         <form method = "POST" action="{% url 'landmark:signup'%}">
             {% csrf_token %}
-            Username:
+            ID:
             <br>
             <input name="username"type="text">
             <br>
@@ -27,8 +23,7 @@
         </form>
     </div>
 </body>
-</html>
-
+{% endblock %}
 
 
 
