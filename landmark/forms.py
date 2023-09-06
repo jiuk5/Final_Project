@@ -6,5 +6,5 @@ class LandmarkForm(forms.ModelForm):
         model = Profile
         fields = ['imgfile']
         labels = {
-            'imgfile': '이미지'
+            'imgfile': '이미지 업로드'
         }

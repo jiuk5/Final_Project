@@ -1,25 +1,26 @@
 {% extends 'landmark/base.html' %}
-{% block title %}회원가입 페이지{% endblock title %}
+{% block title %}Sign Up{% endblock title %}
 {% block headline %}Sign Up{% endblock headline %}
 {% block content %}
 <body>
     <div class="container">
-    
-        <form method = "POST" action="{% url 'landmark:signup'%}">
-            {% csrf_token %}
-            ID:
+
+        <form method="POST" action="{% url 'landmark:signup' %}">
+            {%csrf_token%}
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
+                <label for="floatingInput">ID</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" name="password1" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" name="password2" placeholder="Password">
+                <label for="floatingPassword">Confirm Password</label>
+            </div>
             <br>
-            <input name="username"type="text">
-            <br>
-            Password:
-            <br>
-            <input name="password1" type="password">
-            <br>
-            Confirm Password:
-            <br>
-            <input name="password2" type="password">
-            <br><br>
-            <input type="submit" class="btn btn-primary" value="sign up">
+            <input type="submit" class="btn btn-lg btn-primary" value="Sign up">
         </form>
     </div>
 </body>

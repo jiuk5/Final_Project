@@ -1,6 +1,6 @@
 {% extends 'landmark/base.html' %}
 {% block title %}Index{% endblock title %}
-{% block headline %}HOME{% endblock headline %}
+{% block headline %}First Page{% endblock headline %}
 {% block content %}
 <body>
     <span style= "font-weight:bold;
@@ -8,9 +8,11 @@
                 line-height: 1.0em;">
     어떤 랜드마크가 궁금하신가요?
 </span>
-    <ul>
-        <h3><li><a href="{% url 'landmark:upload' %}">파일 올리기</a></li></h3>
-        <h3><li><a href="{% url 'landmark:list' id=user.id %}">파일 목록</a></li></h3>
-    </ul>
+    <div class="col-lg-6 col-xxl-4 my-5 mx-auto">
+        <div class="d-grid gap-2">
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='{% url 'landmark:upload' %}'">Upload File</button>
+        <button type="button" class="btn btn-outline-primary" onclick="location.href='{% url 'landmark:list' id=user.id %}'">History</button>
+        </div>
+    </div>
 </body>
 {% endblock  %}

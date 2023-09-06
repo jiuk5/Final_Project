@@ -2,21 +2,44 @@
 {% block title %}Home{% endblock title %}
 {% block headline %}Home{% endblock headline %}
 {% block content %}
-<body>
-    <span style= "font-weight:bold;
-                font-size:2em;
-                line-height: 1.0em;">
-저희 사이트에 오신걸 환영 합니다  
-</span>
-<br><br>
-<img src="/media/landmark_icon.gif" alt="style size" style="width:720px; height:520px">
-<br><br>
-<span style= "font-weight:bold;">
-회원가입 하기 / 계정이 있으시면 로그인 하러가기 
-</span>
-<br><br>
-<button class="btn btn-primary" onclick= "window.location.href='{% url 'landmark:signup' %}'" value="sign up">Sign up</button>
-<button class="btn btn-primary" onclick= "window.location.href='{% url 'landmark:login' %}'" value="login">Login</button>
-
+{% load static %}
+<body background="/media/background.jpg">
+<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+<link rel="stylesheet" href="{% static 'css/background.css' %}">
+<div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+    <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <div class="container">
+        <div class="carousel-caption text-start">
+            <h1 style="font-size:400%">Welcome</h1><br>
+            <p class="opacity-75">계정이 없으시면 회원가입을 진행해주세요</p>
+            <p><a class="btn btn-lg btn-primary" href='{% url 'landmark:signup' %}'>Sign up</a></p>
+        </div>
+        </div>
+    </div>
+    <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+        <div class="container">
+        <div class="carousel-caption text-start">
+            <h1 style="font-size:400%">Login</h1><br>
+            <p>로그인 진행하기</p>
+            <p><a class="btn btn-lg btn-primary" href='{% url 'landmark:login' %}'>Login</a></p>
+        </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+    </button>
+</div>
 </body>
 {% endblock %}

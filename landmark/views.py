@@ -12,8 +12,6 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 
-
-
 file_path = './machine_model'
 landmark_pic_list = os.listdir('./media/landmark_pic')
 machine_list = os.listdir(file_path)
@@ -31,6 +29,7 @@ for i in range(len(landmark_pic_list)):
 for i in df_info['name_info']:
     split = i.split('_')
     landmark_name.append(split)
+
 
 @login_required
 def index(request):
@@ -106,7 +105,21 @@ def predict(info):
 def file_list(request, id):
     id = request.user.id
     profiles = Profile.objects.filter(user_id=id).order_by('pk')
-    content={'profiles':profiles}
+    history_list = []
+    for i in profiles:
+        imgfile_path = f'./media/{i.imgfile}'
+        if predict(imgfile_path):
+            name_split = predict(imgfile_path)
+            if name_split == 'Jerusalem':
+                name_split = 'Dome'
+            
+            for i in range(len(landmark_name)):
+                if name_split == landmark_name[i][0]:
+                    index = i
+            name = df_info.loc[index]['name']
+            history_list.append(name)
+    zipped_data_list = zip(profiles, history_list)
+    content={'zipped_data_list':zipped_data_list}
     return render(request, 'landmark/file_list.html', content)
 
 @login_required
@@ -198,6 +211,7 @@ def result(request, id):
                     hotel_price_price.append(price_list[i])
                     hotel_price_star.append(star_list[i])
                     hotel_price_rate.append(rate_list[i])
+                    
         elif i == 1:
             model = joblib.load(f'./machine_model/{machine_list[pkl_n[i]]}')
             hotel_star_list = []
@@ -218,10 +232,10 @@ def result(request, id):
                     hotel_star_star.append(star_list[i])
                     hotel_star_rate.append(rate_list[i])
     zipped_data_price = zip(hotel_price_list, hotel_price_link,hotel_price_price,hotel_price_star,hotel_price_rate)
-    zipped_data_star = zip(hotel_star_list, hotel_star_link,hotel_star_price,hotel_star_star,hotel_star_rate)            
-    context = {'zipped_data_star':zipped_data_star,'zipped_data_price':zipped_data_price,'hotel_price_link':hotel_price_link,'hotel_star_link':hotel_star_link,'price_input':price_input,'star_input':star_input,'hotel_star_list':hotel_star_list,'hotel_price_list':hotel_price_list}
+    zipped_data_star = zip(hotel_star_list, hotel_star_link,hotel_star_price,hotel_star_star,hotel_star_rate)
+    content = {'zipped_data_star':zipped_data_star,'zipped_data_price':zipped_data_price,'hotel_price_link':hotel_price_link,'hotel_star_link':hotel_star_link,'price_input':price_input,'star_input':star_input,'hotel_star_list':hotel_star_list,'hotel_price_list':hotel_price_list}
         
-    return render(request, 'landmark/result.html', context)
+    return render(request, 'landmark/result.html', content)
     
 @login_required
 def delete_file(request, id):
@@ -240,5 +254,3 @@ def delete_file(request, id):
         pass
     
     return redirect(reverse('landmark:list', args=[id]))
-
-

@@ -1,27 +1,40 @@
 {% extends 'landmark/base.html' %}
-{% block title %}history{% endblock title %}
+{% block title %}History{% endblock title %}
 {% block headline %}History{% endblock headline %}
 {% block content %}
-<table class="table">
-    <tbody class="table-group-divider"> 
-    {% for file in profiles %}        
-        <tr>
-            <th>{{forloop.counter}}</th>
-            <td class="text-center">
-                <a href="{% url 'landmark:info' file.id %}">
-                    <img src="{{ file.imgfile.url }}" width="100px" height="100px">
-                </a>
-            </td>
-            <td class="text-center">
-                <a onclick="return confirm('정말 삭제하시겠습니까?');" href="{% url 'landmark:delete' file.id %}"><button>삭제</button></a></td>
-                {% comment %} <a href="{% url 'landmark:delete' file.id %}"><button>삭제</button></a></td> {% endcomment %}
-            </td>
-        </tr>
-    {% endfor %}
-</table>
+
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for data in zipped_data_list %}
+            {% with file=data.0 name=data.1 %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="/media/{{ file.imgfile }}" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" /></img>
+                    <div class="card-body">
+                        <p class="card-text">{{ name }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{% url 'landmark:info' file.id %}">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                </a>
+                                <a onclick="return confirm('정말 삭제하시겠습니까?');" href="{% url 'landmark:delete' file.id %}">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endwith %} 
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
 <br><br><br>
 <div class="d-grid gap-2 col-4 mx-auto">
-<button type="button" class="btn btn-info"><a href="{% url 'landmark:index' %}">처음으로</a></button>
+<a class="btn btn-lg btn-primary" href='{% url 'landmark:index' %}'>First Page</a>
 </div>
 <br><br><br>
 {%endblock%}

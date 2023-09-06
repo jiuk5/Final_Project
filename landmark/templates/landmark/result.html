@@ -1,4 +1,5 @@
 {% extends 'landmark/base.html' %}
+{% load humanize %}
 {% block title %}목록{% endblock title %}
 {% block headline %}Hotel Information{% endblock headline %}
 {% block content %}
@@ -18,7 +19,7 @@
         {% with hotel=data.0 link=data.1 price=data.2 star=data.3 rate=data.4 %}
         <tr>
             <td><a href= {{ link }}> {{ hotel }} </a></td>
-            <td>{{ price }}</td> 
+            <td>{{ price|intcomma }} ₩ </td> 
             <td>{{ star }}</td>  
             <td>{{ rate }}</td>
         </tr>
@@ -42,7 +43,7 @@
         {% with hotel=data.0 link=data.1 price=data.2 star=data.3 rate=data.4 %}
         <tr>
             <td><a href= {{ link }}> {{ hotel }} </a></td>
-            <td>{{ price }}</td> 
+            <td>{{ price|intcomma }} ₩ </td> 
             <td>{{ star }}</td>  
             <td>{{ rate }}</td>
         </tr>
@@ -50,9 +51,9 @@
         {% endfor %} 
 </table>
 <br><br><br>
-{% comment %} <a href="{% url 'landmark:index' %}">처음으로</a>  {% endcomment %}
+
 <div class="d-grid gap-2 col-4 mx-auto">
-    <button type="button" class="btn btn-info"><a href="{% url 'landmark:index' %}">처음으로</a></button>
+    <a class="btn btn-lg btn-primary" href='{% url 'landmark:index' %}'>First Page</a>
 </div>
 <br><br><br>
 {% endblock %}

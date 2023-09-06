@@ -1,5 +1,5 @@
 {% extends 'landmark/base.html' %}
-{% block title %}로그인 페이지{% endblock title %}
+{% block title %}Login{% endblock title %}
 {% block headline %}Login{% endblock headline %}
 {% block content %}
 <body>
@@ -8,20 +8,22 @@
 
     <form method="POST" action="{% url 'landmark:login' %}">
         {%csrf_token%}
-        ID:
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
+            <label for="floatingInput">ID</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
         <br>
-        <input name="username"type="text">
-        <br>
-        Password:
-        <br>
-        <input name="password" type="password">
-        <br><br>
-        <input type="submit" class="btn btn-primary" value="login">
+        <input type="submit" class="btn btn-lg btn-primary" value="Login">
     </form>
 </div>
 <div id="login-error" class="error-message" style="display: block;">
     {{error}}
 </div>
+<br>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var errorDiv = document.getElementById("login-error");
